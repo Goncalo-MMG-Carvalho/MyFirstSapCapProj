@@ -4,17 +4,17 @@ POST http://localhost:4004/odata/v4/task/Tasks
 Content-Type: application/json
 
 {
-  "title": "task2 - user3",
+  "title": "task999 - user1",
   "description": "matters a bit",
-  "priority": "medium",
+  "priority": "high",
   "limitDate": "2025-11-05T00:00:00Z",
-  "username": "user3"
+  "username": "user1"
   
 }
 
 
 ### updade task
-PUT http://localhost:4004/odata/v4/task/Tasks('f545d055-6a4a-497f-bc3b-ab29c7473f30')
+PUT http://localhost:4004/odata/v4/task/Tasks('5b110b09-e565-4736-a484-0e54bddebdab')
 Content-Type: application/json
 
 {
