@@ -10,9 +10,9 @@ type Priority : String enum {
 }
 
 type Status : String enum {
-  n    = 'New';
-  inP  = 'InProgress';
-  done = 'Done';
+  n    = 'New' @title: 'new';
+  inP  = 'InProgress' @title: 'inProg';
+  done = 'Done' @title: 'done';
 }
 
 entity User : cuid {

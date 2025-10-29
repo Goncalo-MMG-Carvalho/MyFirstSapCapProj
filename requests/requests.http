@@ -4,11 +4,12 @@ POST http://localhost:4004/odata/v4/task/Tasks
 Content-Type: application/json
 
 {
-  "title": "Preparar apresentação",
-  "description": "Criar slides para reunião",
-  "priority": "high",
+  "title": "task2 - user3",
+  "description": "matters a bit",
+  "priority": "medium",
   "limitDate": "2025-11-05T00:00:00Z",
-  "username": "goncalo"
+  "username": "user3"
+  
 }
 
 
@@ -19,3 +20,13 @@ Content-Type: application/json
 {
   "status":"done"
 }
+
+### Create a user
+POST http://localhost:4004/odata/v4/task/Users
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "email": "user1@email.com"
+}
+
