@@ -1,6 +1,7 @@
-using{ taskManager } from '../db/schema';
 
-service taskManagerService {
-    entity User as projection on taskManager.User;
-    entity Task as projection on taskManager.Task;
+using { smartsolutions as ss } from '../db/schema';
+
+service TaskService {
+    entity Users as projection on ss.User;
+    entity Tasks as projection on ss.Task;
 }

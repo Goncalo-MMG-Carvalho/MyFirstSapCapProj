@@ -1,7 +1,7 @@
+
 using { cuid } from '@sap/cds/common';
 
-namespace taskManager;
-
+namespace smartsolutions;
 
 type Priority : String enum {
   low    = 'Low';
@@ -15,24 +15,20 @@ type Status : String enum {
   done = 'Done';
 }
 
-
-
-entity User: cuid {
+entity User : cuid {
   username: String(16);
   email: String;
-  task: Association to many Task;
-};
+  tasks: Association to many Task on tasks.username = username;
+}
 
-entity Task: cuid {
+entity Task : cuid {
   title: String;
   description: String;
   priority: Priority;
   status: Status;
   createdAt: Timestamp @cds.on.insert : $now;
+  completedAt: Timestamp;
   limitDate: Timestamp;
-  toBeDoneBy: Association to User;
+  username: String(16);
+  assignedTo: Association to User on username = username;
 }
-
-
-
-

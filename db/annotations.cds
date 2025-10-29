@@ -1,4 +1,4 @@
-using { taskManager.User, taskManager.Task } from './schema';
+using { smartsolutions.User, smartsolutions.Task } from './schema';
 
 
 

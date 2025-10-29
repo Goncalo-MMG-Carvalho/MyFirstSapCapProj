@@ -1,0 +1,21 @@
+
+### Create a task
+POST http://localhost:4004/odata/v4/task/Tasks
+Content-Type: application/json
+
+{
+  "title": "Preparar apresentação",
+  "description": "Criar slides para reunião",
+  "priority": "high",
+  "limitDate": "2025-11-05T00:00:00Z",
+  "username": "goncalo"
+}
+
+
+### updade task
+PUT http://localhost:4004/odata/v4/task/Tasks('f545d055-6a4a-497f-bc3b-ab29c7473f30')
+Content-Type: application/json
+
+{
+  "status":"done"
+}

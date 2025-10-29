@@ -1,15 +1,24 @@
-export default cds.service.impl(function () {
-  const { User, Task } = this.entities;
+//const cds = require('@sap/cds');
+//const express = require('express');
 
-  this.before('CREATE', User, req => {
-    const email = req.data.email;
-    if (!email || !email.includes('@')) {
-      req.error(400, 'Invalid email: must contain "@"');
+
+export default cds.service.impl(function () {
+  const { User, Task } = cds.entities('smartsolutions');
+
+  // Ao criar uma tarefa
+  this.before('CREATE', 'Tasks', async req => {
+    if (!req.data.status) {
+      req.data.status = 'n'; // 'New'
     }
   });
 
-  this.before('CREATE', Task, req => {
-    req.data.status = n;
+  // Ao atualizar uma tarefa
+  this.before('UPDATE', 'Tasks', async req => {
+    if (req.data.status === 'done') {
+      req.data.completedAt = new Date().toISOString();
+    }
   });
+
 });
+
 
