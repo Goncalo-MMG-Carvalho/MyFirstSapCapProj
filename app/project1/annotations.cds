@@ -1,5 +1,14 @@
 using TaskService as service from '../../srv/service';
 annotate service.Tasks with @(
+    UI.Criticality: {$edmJson: {$If: [
+        {$Eq: [{$Path: 'status'}, 'New']},
+        'UI.CriticalityType/Negative',
+        {$If: [
+        {$Eq: [{$Path: 'status'}, 'In Progress']},
+        'UI.CriticalityType/Critical',
+        'UI.CriticalityType/Positive'
+        ]}
+    ]}},
     UI.FieldGroup #GeneratedGroup : {
         $Type : 'UI.FieldGroupType',
         Data : [
@@ -55,54 +64,34 @@ annotate service.Tasks with @(
     ],
     UI.LineItem : [
         {
-            $Type : 'UI.DataField',
-            Label : 'title',
-            Value : title,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'status',
-            Value : status,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'priority',
-            Value : priority,
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : assignedTo.username,
-            Label : 'username',
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : assignedTo.email,
-            Label : 'email',
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'description',
-            Value : description,
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : limitDate,
-            Label : 'limitDate',
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'createdAt',
-            Value : createdAt,
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : completedAt,
-            Label : 'completedAt',
-        },
-        {
             $Type : 'UI.DataFieldForAction',
             Action : 'TaskService.updateStatus',
             Label : 'updateStatus',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : title,
+            Label : 'title',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : status,
+            Label : 'status',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : priority,
+            Label : 'priority',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : description,
+            Label : 'description',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : username,
+            Label : 'username',
         },
     ],
     UI.SelectionFields: [
@@ -111,4 +100,18 @@ annotate service.Tasks with @(
         username
     ],
 );
+
+
+/*
+annotate TaskService.Tasks.status with @(
+  UI.Criticality: {$edmJson: {$If: [
+    {$Eq: [{$Path: 'status'}, 'New']},
+    'UI.CriticalityType/Negative',
+    {$If: [
+      {$Eq: [{$Path: 'status'}, 'In Progress']},
+      'UI.CriticalityType/Critical',
+      'UI.CriticalityType/Positive'
+    ]}
+  ]}}
+);*/
 
